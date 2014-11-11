@@ -46,20 +46,14 @@ function GraphixMask(rectangles) {
 GraphixMask.prototype.init = function() {
   var self = this,
   count    = 0
-  if (this.rectangles.length > 2) {
-    this.area = this.array_parser(this.rectangles)
-    _.each(this.area, function(element) {
-      self._board_setup(element)
-      self.sortedAreas(element);
-      count++
-    });
-  }else{
-    this.area = this.string_parser(this.rectangles)
-    self._board_setup(this.rectangles)
-    self.sortedAreas(this.rectangles);
-  }
+  this.area = this.array_parser(this.rectangles)
+  _.each(this.area, function(element) {
+    self._board_setup(element)
+    count++
+  });
+  self.sortedAreas();
 
-  console.log("count: " + count);
+  //console.log("count: " + count);
 }
 
 GraphixMask.prototype.sortedAreas = function() {
@@ -99,7 +93,7 @@ GraphixMask.prototype.sortedAreas = function() {
   ret_arr = _.sortBy(ret_arr,function(num) {
    return num;
   })
- // console.log(ArrayList);
+ console.log(ret_arr + " result");
 };
 
 
@@ -153,9 +147,6 @@ GraphixMask.prototype.array_parser = function(rectangles) {
  self = this
   _.each(rectangles,function(element,index,list) {
     element = element.split(" ");
-    console.log(element + " "  + index);
-    element = self.string_parser(element)
-    console.log(element + " "  + index);
     temp.push(element)
   });
   return temp;
@@ -166,23 +157,9 @@ GraphixMask.prototype.array_parser = function(rectangles) {
 * @returns {array} of numbers
 */
 
-GraphixMask.prototype.string_parser = function(string_arry) {
- var temp = []
- console.log("string arry " + string_arry);
- _.each(string_arry,function(element,index,list) {
-   temp.push(Number(element))
- }); 
- console.log("string parser: " + temp);
- return temp;
-}
-/**
-* description  
-* @param {string} takes in a string of integers
-* @returns {array} of numbers
-*/
-
 // Base Case
 //test = new GraphixMask(["0 292 399 307"])
 
-tester = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"]);
-
+//tester = new GraphixMask(["48 192 351 207","48 392 351 407", "120 52 135 547", "260 52 275 547"]);
+bakh = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
+//bakh = new GraphixMask(["0 192 399 207", "0 392 399 407", "120 0 135 599", "260 0 275 599"])

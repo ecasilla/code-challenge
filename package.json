@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bit-array": "^0.2.2",
+    "data-structures": "^1.4.2",
     "data-structures-js": "^0.0.3-beta",
     "underscore": "^1.7.0"
   },
