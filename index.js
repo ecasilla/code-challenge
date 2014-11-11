@@ -10,7 +10,7 @@
 * @requires underscore
 */
 var BitArray = require('bit-array');
-var LinkedList = require('data-structures').LinkedList;
+var Queue = require('data-structures').Queue;
 var _ = require('underscore');
 
 module.exports = GraphixMask;
@@ -24,13 +24,12 @@ function State(xx,yy) {
   this.y = yy;
 }
 
-var ArrayList = []
 /**
 * Creates a new GraphixMask
 * @class
 */
 function GraphixMask(rectangles) {
-  this.queue      = new LinkedList();
+  this.queue      = new Queue();
   this.visited    = new BitArray();
   this.rectangles = rectangles;
   this.board      = this._create_bit_arrays(400,600);
@@ -44,34 +43,35 @@ function GraphixMask(rectangles) {
  *
  */
 GraphixMask.prototype.init = function() {
-  var self = this,
-  count    = 0
-  this.area = this.array_parser(this.rectangles)
-  _.each(this.area, function(element) {
-    self._board_setup(element)
-    count++
-  });
-  self.sortedAreas();
 
-  //console.log("count: " + count);
+  this.array_parser(this.rectangles)
+
+  this.sortedAreas();
+
 }
 
 GraphixMask.prototype.sortedAreas = function() {
-  var queue = new LinkedList(),
+  var queue = this.queue,
   dx = [-1,1,0,0],
   dy = [0,0,-1,1];
 
   for(var i = 0; i < this.board.length; i++){
     for(var j = 0; j < this.board[i].length; j++){
+
       var ret = 0;
+
       if(this.board[i][j]){
-        queue.add(new State(i,j));
+        queue.enqueue(new State(i,j));
       }
+
       this.board[i][j] = false;
       while(queue.size > 0){
+
         ret++;
-        var temp = queue.removeAt(-1)
+
+        var temp = queue.dequeue()
         var state = new State(temp.x,temp.y);
+
         for(var k = 0; k < dx.length; k++){
           var x = Number(state.x + dx[k]);
           var y = Number(state.y + dy[k]);
@@ -79,16 +79,16 @@ GraphixMask.prototype.sortedAreas = function() {
             continue;
           }
           this.board[x][y] = false;
-          queue.add(new State(x,y));
+          queue.enqueue(new State(x,y));
         }
       }
       //extract method
-      if(ret !== 0) ArrayList.push(ret);
+      if(ret !== 0) this.ArrayList.push(ret);
     }
   }
   var ret_arr = [];
-  for( i = 0; i < ArrayList.length; i++){
-    ret_arr[i] = ArrayList[i];
+  for( i = 0; i < this.ArrayList.length; i++){
+    ret_arr[i] = this.ArrayList[i];
   }
   ret_arr = _.sortBy(ret_arr,function(num) {
    return num;
@@ -98,10 +98,10 @@ GraphixMask.prototype.sortedAreas = function() {
 
 
 GraphixMask.prototype._board_setup = function(area) {
-  this.row1    = area[0];
-  this.col1    = area[1];
-  this.row2    = area[2];
-  this.col2    = area[3];
+  this.row1    = +area[0];
+  this.col1    = +area[1];
+  this.row2    = +area[2];
+  this.col2    = +area[3];
   for(var j = this.row1; j <= this.row2; j++){
     for(var k = this.col1; k <= this.col2; k++){
       this.board[j][k] = false;
@@ -143,13 +143,11 @@ GraphixMask.prototype.toString = function() {
 * @returns {array} of numbers
 */
 GraphixMask.prototype.array_parser = function(rectangles) {
- var temp = [],
- self = this
+  var self = this
   _.each(rectangles,function(element,index,list) {
-    element = element.split(" ");
-    temp.push(element)
+    var area = element.split(" "); //array of four element
+    self._board_setup(area)
   });
-  return temp;
 };
 /**
 * description  
@@ -158,8 +156,9 @@ GraphixMask.prototype.array_parser = function(rectangles) {
 */
 
 // Base Case
-//test = new GraphixMask(["0 292 399 307"])
+test = new GraphixMask(["0 292 399 307"])
 
-//tester = new GraphixMask(["48 192 351 207","48 392 351 407", "120 52 135 547", "260 52 275 547"]);
 bakh = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
-//bakh = new GraphixMask(["0 192 399 207", "0 392 399 407", "120 0 135 599", "260 0 275 599"])
+test3 = new GraphixMask([ "48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
+
+test2 = new GraphixMask(["50 300 199 300", "201 300 350 300", "200 50 200 299", "200 301 200 550"])
