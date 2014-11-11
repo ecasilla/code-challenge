@@ -41,11 +41,11 @@ function GraphixMask(rectangles) {
  */
 GraphixMask.prototype.init = function() {
 
-  this.array_parser(this.rectangles)
+  this.array_parser(this.rectangles);
 
   this.sortedAreas();
 
-}
+};
 
 GraphixMask.prototype.sortedAreas = function() {
   var queue = this.queue,
@@ -66,7 +66,7 @@ GraphixMask.prototype.sortedAreas = function() {
 
         ret++;
 
-        var temp = queue.dequeue()
+        var temp = queue.dequeue();
         var state = new State(temp.x,temp.y);
 
         for(var k = 0; k < dx.length; k++){
@@ -80,13 +80,12 @@ GraphixMask.prototype.sortedAreas = function() {
         }
       }
       //extract method
-      if(ret !== 0) this.ArrayList.push(ret);
+      if(ret !== 0) {this.ArrayList.push(ret);}
     }
   }
   this.ArrayList =  _.sortBy(this.ArrayList,function(num) {
     return num;
-  })
-  console.log(this.ArrayList);
+  });
 };
 
 
@@ -119,16 +118,6 @@ GraphixMask.prototype._create_2d_arrays = function(arr,arr2) {
   return bit_arrys;
 };
 
-/**
-* description Overloading the Object.toString Method 
-* @returns a print of the current state of bit_arrays
-*/
-
-GraphixMask.prototype.toString = function() {
-  return this.bit_arrys.map(function(row) {
-    return row.join(' ');
-  }).join('\n');   
-};
 
 /**
 * description  
@@ -136,19 +125,14 @@ GraphixMask.prototype.toString = function() {
 * @returns {array} of numbers
 */
 GraphixMask.prototype.array_parser = function(rectangles) {
-  var self = this
+  var self = this;
   _.each(rectangles,function(element,index,list) {
     var area = element.split(" "); //array of four elements
     //for each element we want to set the area to false
-    self._board_setup(area)
+    self._board_setup(area);
   });
 };
-/**
-* description  
-* @param {string} takes in a string of integers
-* @returns {array} of numbers
-*/
 
 module.exports = GraphixMask;
 
-test = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
+var test = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"]);

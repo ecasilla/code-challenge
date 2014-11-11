@@ -14,7 +14,7 @@
   "trailing": true,
   "immed": true,
   "smarttabs": true,
-  "strict": true,
+  "strict": false,
   "predef": [
     "describe",
     "it",
