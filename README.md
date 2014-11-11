@@ -1,4 +1,4 @@
-#Grapix Mask   
+#Graphix Mask   
 
 [![Build Status](https://travis-ci.org/ecasilla/code-challenge.svg)](https://travis-ci.org/ecasilla/code-challenge)
 
