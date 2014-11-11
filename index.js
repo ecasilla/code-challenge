@@ -27,7 +27,8 @@ function GraphixMask(rectangles) {
 
 
 /**
- * description this is the main function it kicks off the process of marking the rectangles as false then thereafter it starts the algorithm
+ * description this is the main function it kicks off the process of 
+ * marking the rectangles as false then thereafter it starts the algorithm
  * 
  */
 GraphixMask.prototype.init = function() {
@@ -99,7 +100,7 @@ GraphixMask.prototype.sortedAreas = function() {
 };
 
 /**
- * description this method takes and array and for each item in then array 
+ * description this method takes and array and for each item in the array 
  * it sets the pixel value on the board to false 
  * @params {array}
  * @returns {array} the new versions of the 2D array with the falsie values inserted
