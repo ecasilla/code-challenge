@@ -6,7 +6,6 @@
  * Copyright (c) 2014 Ernie Casilla. All rights reserved.
  */
 
-
 module.exports = function (grunt) {
 	grunt.initConfig({
 		jsbeautifier: {
@@ -49,13 +48,29 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+    uglify: {
+      options: {
+        sourceMap: true,
+        compress: {
+          drop_console: false
+        }
+      },
+      all: {
+        files: [{
+          expand: true,
+          cwd: '.',
+          src: ['index.js'],
+          dest: 'build'
+        }]
+      }
+    },
 		watch: {
 			options: {
 				interrupt: true
 			},
 			js: {
 				files: ['<%= jshint.all %>'],
-				tasks: ['newer:simplemocha:all', 'newer:jshint:all', 'newer:jsbeautifier', 'doc']
+				tasks: ['newer:simplemocha:all', 'newer:jshint:all', 'newer:uglify','newer:jsbeautifier', 'doc']
 			}
 		}
 	});
@@ -69,5 +84,5 @@ module.exports = function (grunt) {
 	grunt.registerTask('doc', 'jsdoc');
 	grunt.registerTask('test', 'simplemocha');
 	grunt.registerTask('lint', 'jshint');
-	grunt.registerTask('default', ['lint', 'doc', 'test' ]);
+	grunt.registerTask('default', ['lint', 'doc', 'test','uglify' ]);
 };

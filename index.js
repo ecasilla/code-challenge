@@ -151,7 +151,7 @@ GraphixMask.prototype.array_parser = function(rectangles) {
 
 module.exports = GraphixMask;
 
-var test = new GraphixMask(["0 292 399 307"])
-var test1 = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
-var test2 = new GraphixMask(["0 192 399 207", "0 392 399 407", "120 0 135 599", "260 0 275 599"])
-var test3 = new GraphixMask(["50 300 199 300", "201 300 350 300", "200 50 200 299", "200 301 200 550"])
+var test = new GraphixMask(["0 292 399 307"]);
+var test1 = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"]);
+var test2 = new GraphixMask(["0 192 399 207", "0 392 399 407", "120 0 135 599", "260 0 275 599"]);
+var test3 = new GraphixMask(["50 300 199 300", "201 300 350 300", "200 50 200 299", "200 301 200 550"]);
