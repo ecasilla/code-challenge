@@ -1,6 +1,6 @@
 #Grapix Mask   
 
-[https://travis-ci.org/ecasilla/code-challenge.svg]: 
+[![Build Status](https://travis-ci.org/ecasilla/code-challenge.svg)](https://travis-ci.org/ecasilla/code-challenge)
 
 
 This is my solution to the **Top Coder** [problem]( http://community.topcoder.com/stat?c=problem_statement&pm=2998&rd=5857) Graphix Mask Implemented Using JavaScript
