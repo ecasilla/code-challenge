@@ -9,11 +9,9 @@
 * @requires data-structures/LinkedList
 * @requires underscore
 */
-var BitArray = require('bit-array');
 var Queue = require('data-structures').Queue;
 var _ = require('underscore');
 
-module.exports = GraphixMask;
 
 /**
 * Creates a new State
@@ -30,9 +28,8 @@ function State(xx,yy) {
 */
 function GraphixMask(rectangles) {
   this.queue      = new Queue();
-  this.visited    = new BitArray();
   this.rectangles = rectangles;
-  this.board      = this._create_bit_arrays(400,600);
+  this.board      = this._create_2d_arrays(400,600);
   this.ArrayList  = [];
   this.init();
 }
@@ -86,14 +83,10 @@ GraphixMask.prototype.sortedAreas = function() {
       if(ret !== 0) this.ArrayList.push(ret);
     }
   }
-  var ret_arr = [];
-  for( i = 0; i < this.ArrayList.length; i++){
-    ret_arr[i] = this.ArrayList[i];
-  }
-  ret_arr = _.sortBy(ret_arr,function(num) {
-   return num;
+  this.ArrayList =  _.sortBy(this.ArrayList,function(num) {
+    return num;
   })
- console.log(ret_arr + " result");
+  console.log(this.ArrayList);
 };
 
 
@@ -117,7 +110,7 @@ GraphixMask.prototype._board_setup = function(area) {
 * @returns 2D Array with a true inital value
 */
 
-GraphixMask.prototype._create_bit_arrays = function(arr,arr2) {
+GraphixMask.prototype._create_2d_arrays = function(arr,arr2) {
   var bit_arrys = _.range(1,arr + 1).map(function() {
     return _.range(1,arr2 + 1).map(function() {
       return true; 
@@ -145,7 +138,8 @@ GraphixMask.prototype.toString = function() {
 GraphixMask.prototype.array_parser = function(rectangles) {
   var self = this
   _.each(rectangles,function(element,index,list) {
-    var area = element.split(" "); //array of four element
+    var area = element.split(" "); //array of four elements
+    //for each element we want to set the area to false
     self._board_setup(area)
   });
 };
@@ -155,10 +149,6 @@ GraphixMask.prototype.array_parser = function(rectangles) {
 * @returns {array} of numbers
 */
 
-// Base Case
-test = new GraphixMask(["0 292 399 307"])
+module.exports = GraphixMask;
 
-bakh = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
-test3 = new GraphixMask([ "48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
-
-test2 = new GraphixMask(["50 300 199 300", "201 300 350 300", "200 50 200 299", "200 301 200 550"])
+test = new GraphixMask(["48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"])
