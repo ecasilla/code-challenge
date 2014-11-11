@@ -46,7 +46,7 @@ describe("Graphix Mask: ", function() {
       var subject = new GraphixMask(["0 292 399 307"]);
       expect(subject).to.respondTo("_board_setup");
     });
-    it('should have the setup method defined', function(){
+    it('should have the parser method defined', function(){
       var subject = new GraphixMask(["0 292 399 307"]);
       expect(subject).to.respondTo('array_parser');
     });
@@ -71,6 +71,7 @@ describe("Graphix Mask: ", function() {
       expect(subject.queue.size).to.be.equal(0);
     });
     it('should have the results array defined', function(){
+      this.timeout(9000)
       var subject = new GraphixMask(["0 292 399 307"]);
       expect(subject.ArrayList).to.have.length.of.at.least(2);
     });

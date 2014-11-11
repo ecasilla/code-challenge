@@ -21,6 +21,14 @@
     "sinon": "^1.11.1",
     "sinon-chai": "^2.6.0"
   },
+  "bugs":{
+    "url" : "http://github.com/ecasilla/code-challenge/issues",
+    "email" : "ecasilla@cloud.com"
+  },
+  "repository" :{
+    "type" : "git",
+     "url" : "git@github.com:ecasilla/code-challenge.git"
+    },
   "scripts": {
     "test": "mocha --recursive"
   },

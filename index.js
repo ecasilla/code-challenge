@@ -27,7 +27,7 @@ function GraphixMask(rectangles) {
 
 
 /**
- * description this is the main function it kicks off the process of marking the rectangles as false then thereafter it starts the algoritim
+ * description this is the main function it kicks off the process of marking the rectangles as false then thereafter it starts the algorithm
  * 
  */
 GraphixMask.prototype.init = function() {
@@ -39,7 +39,7 @@ GraphixMask.prototype.init = function() {
 };
 
 /**
- * description the main algoritim that does the exploration of the pixel board
+ * description the main algorithm that does the exploration of the pixel board
  * @returns {array}
  */
 
@@ -102,7 +102,7 @@ GraphixMask.prototype.sortedAreas = function() {
  * description this method takes and array and for each item in then array 
  * it sets the pixel value on the board to false 
  * @params {array}
- * @returns {array} the new verison of the 2D array with the falsy values inserted
+ * @returns {array} the new versions of the 2D array with the falsie values inserted
  */
 
 GraphixMask.prototype._board_setup = function(area) {
@@ -122,7 +122,7 @@ GraphixMask.prototype._board_setup = function(area) {
 * description this method return a 2d array with a default value
 * @param {integer} of the row size 400
 * @param {integer} of the column size 600
-* @returns {arrays} 2D Array with a true inital value
+* @returns {arrays} 2D Array with a true initial value
 */
 
 GraphixMask.prototype._create_2d_arrays = function(arr,arr2) {
